@@ -5,16 +5,7 @@ let api = null, pwd = null, inv = null;
 let choices = null;
 const parser = new DOMParser();
 let debug = false;
-/*
-let s = document.createElement('Items_js');s.src='http://157.245.183.113/kolItems.js';window.parent.parent.document.querySelector('head').appendChild(s);
-s = document.createElement('Volcano_js');s.src='http://157.245.183.113/volcano.js';window.parent.parent.document.querySelector('head').appendChild(s);
 
-
-charsheet.php
-
-<tr><td align="right">Hot Protection:</td><td><b>Really Very Extremely Amazingly High (16)</b></td></tr>
-*/
-// Fetch API data
 let home = "<h1>Nyt Mobile</h1><table><tr><td>PreLoads</td><td></td><td></td></tr><tr><td><input type=submit value='Eat' onclick='diet();'/></td><td></td><td></td></tr><tr><td><input type=submit value='Volcano' onclick='mineVolcano();'/></td><td>Buy a ticket? <input type=checkbox name=ticket /></td><td>Turns: <input type=text value=0 name='volcano turns.'/></td></tr><tr><td>Link New Script: <input type=text name = 'scriptURL' length= 300 /></td><td><input type=submit value='newScript' onclick='addScript()'/></td></tr><tr><td >Paste new script: </td><td><input type=submit value='newScript' onclick='addPaste()'/></td></tr><tr><td colspan=2><textarea col='100' rows='30' name='scriptBox'></textarea></td></tr></table>";
 function addScript(){let s = document.createElement('Muff_'+Math.floor(Math.random()*5000));s.src=document.getElementById('scriptURL');window.parent.parent.document.querySelector('head').appendChild(s);}
 function addPaste(){let s = document.createElement('Muff_'+Math.floor(Math.random()*5000));s.text=document.getElementById('scriptBox');window.parent.parent.document.querySelector('head').appendChild(s);}
@@ -89,7 +80,9 @@ async function visit(u, o, auth2) {
     return '';
   }
 }
-async function getProtection(e) {
+
+//depricated tomorrow moving to api
+async function getProtection_old(e) {
     let page = await visit('charsheet.php');
    
   const regex = new RegExp(`${e} Protection:</td><td><b>.*?\((\\d+)\)</b>`, 'i');
@@ -102,4 +95,5 @@ async function getProtection(e) {
 
 setFrame();
 updateFrame(parser.parseFromString(home,'text/html'));
+
 //console.log(await getProtection('Hot'));
