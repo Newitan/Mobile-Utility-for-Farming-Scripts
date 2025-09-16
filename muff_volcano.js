@@ -3,6 +3,8 @@
 A script that will mine the volcano using the Mobile Utility for Farming Scripts tool. 
 
 */
+runLoader({name:'70svolcano',src:'https://newitan.github.io/Mobile-Utility-for-Farming-Scripts/muff_volcano.js',com:'mineVolcano',options:['turns']});
+
 async function mineVolcano(turns) {
   await reapi();
   if (!api) {
