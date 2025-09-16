@@ -30,7 +30,7 @@ let addURLScript = function addURLScript(url){
 //Value for home page
 let home = "";
 function setHome(){
-    home= "<h1>Mobile Utility for Farming Scripts. </h1><table>"+getPreLoads()+"<td></td></tr><tr><td>Link New Script: <input type=text name = 'urlBox' length= 300 /></td><td><input type=submit value='Add Script by URL' onclick='"+addURLScript+" addURLScript();window.parent.setHome(); window.parent.goHome();'/></td></tr><tr><td >Paste new script: </td><td><input type=submit value='Add Pasted Script' onclick='"+addPastedScript+" addPastedScript();'/></td></tr><tr><td colspan=2><textarea col='100' rows='30' name='scriptBox' id='scriptBox'></textarea></td></tr></table>";
+    home= "<h1>Mobile Utility for Farming Scripts. </h1><table>"+getPreLoads()+"<td></td></tr><tr><td>Link New Script: <input type=text name = 'urlBox' length= 300 /></td><td><input type=submit value='Add Script by URL' onclick='"+addURLScript+setHome+goHome+" addURLScript();setHome(); goHome();'/></td></tr><tr><td >Paste new script: </td><td><input type=submit value='Add Pasted Script' onclick='"+addPastedScript+" addPastedScript();'/></td></tr><tr><td colspan=2><textarea col='100' rows='30' name='scriptBox' id='scriptBox'></textarea></td></tr></table>";
 
 }
 //Preload from local storage
@@ -155,6 +155,7 @@ setFrame(' ');
 setFrame(home);
 
 }
+
 
 
 
