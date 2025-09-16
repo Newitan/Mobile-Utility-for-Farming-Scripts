@@ -32,6 +32,7 @@ if(!localStorage.get('muff_scripts').includes(s.name)){
   data[loader.name] = s;
   localStorage.set('muff_scripts',JSON.stringify(data));
 }
+}
 
 async function reapi() {
   try {
@@ -131,6 +132,7 @@ setFrame(home);
 //Launch Home Page
 
  setTimeout(goHome(),3000);
+
 
 
 
