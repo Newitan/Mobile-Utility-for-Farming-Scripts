@@ -26,7 +26,12 @@ let addURLScript = function addURLScript(){
 let home = "<script> </script><h1>Mobile Utility for Farming Scripts. </h1><table><tr><td>Link New Script: <input type=text name = 'urlBox' length= 300 /></td><td><input type=submit value='Add Script by URL' onclick='"+addURLScript+" addURLScript();'/></td></tr><tr><td >Paste new script: </td><td><input type=submit value='Add Pasted Script' onclick='"+addPastedScript+" addPastedScript();'/></td></tr><tr><td colspan=2><textarea col='100' rows='30' name='scriptBox' id='scriptBox'></textarea></td></tr></table>";
 
 
-
+function runLoader(s){
+if(!localStorage.get('muff_scripts').includes(s.name)){
+  let data = JSON.parse(localStorage.get('muff_scripts'));
+  data[loader.name] = s;
+  localStorage.set('muff_scripts',JSON.stringify(data));
+}
 
 async function reapi() {
   try {
@@ -126,6 +131,7 @@ setFrame(home);
 //Launch Home Page
 
  setTimeout(goHome(),3000);
+
 
 
 
