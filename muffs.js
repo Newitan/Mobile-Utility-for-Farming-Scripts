@@ -1,14 +1,32 @@
 /*
-    Introducing the Mobile Utilities for Farming Scripts
+    Introducing the Mobile Utility for Farming Scripts
 */
+
 let api = null, pwd = null, inv = null;
 let choices = null;
 const parser = new DOMParser();
 let debug = false;
 
-let home = "<h1>Nyt Mobile</h1><table><tr><td>PreLoads</td><td></td><td></td></tr><tr><td><input type=submit value='Eat' onclick='diet();'/></td><td></td><td></td></tr><tr><td><input type=submit value='Volcano' onclick='mineVolcano();'/></td><td>Buy a ticket? <input type=checkbox name=ticket /></td><td>Turns: <input type=text value=0 name='volcano turns.'/></td></tr><tr><td>Link New Script: <input type=text name = 'scriptURL' length= 300 /></td><td><input type=submit value='newScript' onclick='addScript()'/></td></tr><tr><td >Paste new script: </td><td><input type=submit value='newScript' onclick='addPaste()'/></td></tr><tr><td colspan=2><textarea col='100' rows='30' name='scriptBox'></textarea></td></tr></table>";
-function addScript(){let s = document.createElement('Muff_'+Math.floor(Math.random()*5000));s.src=document.getElementById('scriptURL');window.parent.parent.document.querySelector('head').appendChild(s);}
-function addPaste(){let s = document.createElement('Muff_'+Math.floor(Math.random()*5000));s.text=document.getElementById('scriptBox');window.parent.parent.document.querySelector('head').appendChild(s);}
+let addPastedScript = function addPastedScript(){
+  let box = document.querySelector("[name=scriptBox]");
+  let s = document.createElement("script");
+  s.text=box.value;
+  box.value="";
+  s.name="newScript_"+Math.floor(Math.random()*5000);
+  window.parent.parent.parent.document.querySelector("head").appendChild(s);
+}
+let addURLScript = function addURLScript(){
+  let box = document.querySelector("[name=urlBox]");
+  let s = document.createElement("script");
+  s.src=box.value;
+  box.value="";
+  s.name="newScript_"+Math.floor(Math.random()*5000);
+  window.parent.parent.parent.document.querySelector("head").appendChild(s);
+}
+let home = "<script> </script><h1>Mobile Utility for Farming Scripts. </h1><table><tr><td>Link New Script: <input type=text name = 'urlBox' length= 300 /></td><td><input type=submit value='Add Script by URL' onclick='"+addURLScript+" addURLScript();'/></td></tr><tr><td >Paste new script: </td><td><input type=submit value='Add Pasted Script' onclick='"+addPastedScript+" addPastedScript();'/></td></tr><tr><td colspan=2><textarea col='100' rows='30' name='scriptBox' id='scriptBox'></textarea></td></tr></table>";
+
+
+
 
 async function reapi() {
   try {
@@ -51,7 +69,10 @@ async function setFrame(t){
   parent.frames['mainpane'].document.body.innerHTML = t;
 }
 async function updateFrame(t){
-    parent.frames['mainpane'].document.body.appendChild(t);
+    console.log(t);
+    let d = document.createElement('div');
+    d.innerHTML=t;
+    parent.frames['mainpane'].document.body.appendChild(d);
 }
 // Visit a URL with options
 async function visit(u, o, auth2) {
@@ -81,8 +102,7 @@ async function visit(u, o, auth2) {
   }
 }
 
-//depricated tomorrow moving to api
-async function getProtection_old(e) {
+async function getProtection(e) {
     let page = await visit('charsheet.php');
    
   const regex = new RegExp(`${e} Protection:</td><td><b>.*?\((\\d+)\)</b>`, 'i');
@@ -92,8 +112,16 @@ async function getProtection_old(e) {
     match = match.replace(/[^0-9]/g, '');
     
   return match;}
+function goHome(){
 
-setFrame();
-updateFrame(parser.parseFromString(home,'text/html'));
+setFrame(' ');
 
-//console.log(await getProtection('Hot'));
+setFrame(home);
+
+}
+
+
+
+
+
+goHome();
