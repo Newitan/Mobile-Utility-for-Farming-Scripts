@@ -123,5 +123,6 @@ setFrame(home);
 
 
 
+//Launch Home Page
+ setTimeout(goHome(),1000);
 
-goHome();
