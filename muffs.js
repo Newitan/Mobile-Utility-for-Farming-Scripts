@@ -1,12 +1,13 @@
 /*
     Introducing the Mobile Utility for Farming Scripts
 */
-
 let api = null, pwd = null, inv = null;
 let choices = null;
 const parser = new DOMParser();
 let debug = false;
 
+
+//Add scripts to the page
 let addPastedScript = function addPastedScript(){
   let box = document.querySelector("[name=scriptBox]");
   let s = document.createElement("script");
@@ -15,25 +16,52 @@ let addPastedScript = function addPastedScript(){
   s.name="newScript_"+Math.floor(Math.random()*5000);
   window.parent.parent.parent.document.querySelector("head").appendChild(s);
 }
-let addURLScript = function addURLScript(){
-  let box = document.querySelector("[name=urlBox]");
-  let s = document.createElement("script");
-  s.src=box.value;
-  box.value="";
-  s.name="newScript_"+Math.floor(Math.random()*5000);
+let addURLScript = function addURLScript(url){
+      let s = document.createElement("script");
+  if(url==undefined){
+    let box = document.querySelector("[name=urlBox]");
+
+    url = box.value;
+    box.value="";
+  }
+  s.src=url;
   window.parent.parent.parent.document.querySelector("head").appendChild(s);
 }
-let home = "<script> </script><h1>Mobile Utility for Farming Scripts. </h1><table><tr><td>Link New Script: <input type=text name = 'urlBox' length= 300 /></td><td><input type=submit value='Add Script by URL' onclick='"+addURLScript+" addURLScript();'/></td></tr><tr><td >Paste new script: </td><td><input type=submit value='Add Pasted Script' onclick='"+addPastedScript+" addPastedScript();'/></td></tr><tr><td colspan=2><textarea col='100' rows='30' name='scriptBox' id='scriptBox'></textarea></td></tr></table>";
+//Value for home page
+let home = "<h1>Mobile Utility for Farming Scripts. </h1><table>"+getPreLoads()+"<tr><td>Command Bar: <input type=text id=commandBar /> <input type=submit onclick='"+addURLScript+" addURLScript();'/></td><td></td></tr><tr><td>Link New Script: <input type=text name = 'urlBox' length= 300 /></td><td><input type=submit value='Add Script by URL' onclick='"+addURLScript+" addURLScript();'/></td></tr><tr><td >Paste new script: </td><td><input type=submit value='Add Pasted Script' onclick='"+addPastedScript+" addPastedScript();'/></td></tr><tr><td colspan=2><textarea col='100' rows='30' name='scriptBox' id='scriptBox'></textarea></td></tr></table>";
 
 
+//Preload from local storage
+function getPreLoadData(){let data = JSON.parse(localStorage.getItem('muffs_scripts'));
+  if(data==null){data = {};} return data;}
+
+function getPreLoads(){
+  let msg = "";
+  let data = getPreLoadData();
+
+    Object.keys(data).forEach(d=>{
+        console.log(d);
+        addURLScript(data[d].src);
+        msg+="<tr><td>"+d+": ";
+        console.log(data[d].options);
+        data[d].options.forEach(o=>{
+          msg+=" "+o+": <input type=text name="+o+" />";
+        });
+    msg+="<input type=submit value="+d+" onclick='window.parent.parent."+data[d].com+"' /></td>";
+    msg+="</tr>";
+  });
+  return msg;
+}
 function runLoader(s){
-if(!localStorage.get('muff_scripts').includes(s.name)){
-  let data = JSON.parse(localStorage.get('muff_scripts'));
-  data[loader.name] = s;
-  localStorage.set('muff_scripts',JSON.stringify(data));
+   let data = getPreLoadData();
+if(s.name in data){console.log('already loaded');}else{
+ 
+  data[s.name] = s;
+  localStorage.setItem('muffs_scripts',JSON.stringify(data));
 }
 }
 
+//Refreshing the API
 async function reapi() {
   try {
     let p = await fetch(new Request('api.php?', {
@@ -125,16 +153,5 @@ setFrame(' ');
 setFrame(home);
 
 }
-
-
-
-
-//Launch Home Page
-
- setTimeout(goHome(),3000);
-
-
-
-
 
 
