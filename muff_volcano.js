@@ -1,9 +1,7 @@
+//https://newitan.github.io/Mobile-Utility-for-Farming-Scripts/muff_volcano.js
+// mineVolcano function
 
-/*
-A script that will mine the volcano using the Mobile Utility for Farming Scripts tool. 
-
-*/
-runLoader({name:'70svolcano',src:'https://newitan.github.io/Mobile-Utility-for-Farming-Scripts/muff_volcano.js',com:'mineVolcano',options:['turns']});
+window.parent.runLoader({name:'70svolcano',src:'https://newitan.github.io/Mobile-Utility-for-Farming-Scripts/muff_volcano.js',com:'mineVolcano',options:['turns']});
 
 async function mineVolcano(turns) {
   await reapi();
@@ -27,7 +25,7 @@ async function mineVolcano(turns) {
     return msg;
   }
 
-
+  // Equip mining gear (assuming item ID 8422 is the HTMD)
   if (parseInt(api.equipment.weapon) !== 8422) {
     await visit('inv_equip.php', 'which=2&action=equip&whichitem=8422', true);
   }
@@ -115,6 +113,7 @@ async function mineVolcano(turns) {
       msg+="<br />Adventures used: "+finalTurns;
       msg+="<br />Gold gained: "+finalGold;
       msg+="<br />Time Spent: "+finalTime+" seconds.";
+      msg+="<br /> <a href='javascript:this.parent.goHome();'>Home</a>";
       setFrame(msg);
       console.log(startTurns+" "+startGold+" "+startTime);
       console.log(api.adventures+" "+inv[8424]+" "+Date.now());
@@ -130,6 +129,3 @@ async function mineVolcano(turns) {
 
 
 }
-
-// Example usage
- mineVolcano(3);
