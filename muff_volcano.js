@@ -1,7 +1,7 @@
 //https://newitan.github.io/Mobile-Utility-for-Farming-Scripts/muff_volcano.js
 // mineVolcano function
 
-window.parent.runLoader({name:'70svolcano',src:'https://newitan.github.io/Mobile-Utility-for-Farming-Scripts/muff_volcano.js',com:'mineVolcano()',options:['turns']});
+window.parent.runLoader({name:'70svolcano',src:'https://newitan.github.io/Mobile-Utility-for-Farming-Scripts/muff_volcano.js',com:'mineVolcano',options:['turns']});
 
 async function mineVolcano(turns) {
   await reapi();
@@ -30,10 +30,13 @@ async function mineVolcano(turns) {
     await visit('inv_equip.php', 'which=2&action=equip&whichitem=8422', true);
   }
   const startTurns = api.adventures;
+  let currentTurns = api.adventures;
   const startTime = Date.now();
   const startGold = inv[8424];
   // Mining loop
   let mineLoop = async () => {
+    let turnCheck = api.adventures - currentTurns;
+    if(turncheck!=0){turns-=turnCheck; currentTurns=api.adventures;}
     if (turns <= 0) return;
   // Heal if HP low
   if (api.hp < 50) {
@@ -82,7 +85,7 @@ async function mineVolcano(turns) {
       for (let tile of promising) {
         console.log('Mining promising tile:', tile);
         let page2 = await visit(tile.l, '');
-        turns--;
+        
         if (page2.includes('goldnugget.gif')) {
           console.log("Gold found!");
           // Optionally reset mine
@@ -97,7 +100,7 @@ async function mineVolcano(turns) {
         await visit('mining.php', 'reset=1&mine=6', true);
       } else {
         await visit('mining.php', 'mine=6&which=51', true);
-        turns--;
+        
       }
     }
 
@@ -129,3 +132,6 @@ async function mineVolcano(turns) {
 
 
 }
+
+// Example usage
+//mineVolcano(3);
