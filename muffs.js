@@ -55,7 +55,7 @@ function getPreLoadData(){let data = JSON.parse(localStorage.getItem('muffs_scri
 function getPreLoads(){
   let msg = "";
   let data = getPreLoadData();
-
+    let options = [];
     Object.keys(data).forEach(d=>{
         console.log(d);
         addURLScript(data[d].src);
@@ -63,9 +63,12 @@ function getPreLoads(){
         console.log(data[d].options);
         data[d].options.forEach(o=>{
           msg+=" "+o+": <input type=text name="+d+"_"+o+" />";
+            options[options.length]=o;
         });
         let command = data[d].com.slice(-1);
-        command+= document.querySelector("[name="+d+"_"+o+"]").value;
+        options.forEach(o=>{
+            command+= document.querySelector("[name="+d+"_"+o+"]").value;
+        });
         command+=")";
         console.log(command);
     msg+="<input type=submit value="+d+" onclick='window.parent.parent."+command+"' /></td>";
@@ -167,6 +170,7 @@ async function getProtection(e) {
     match = match.replace(/[^0-9]/g, '');
     
   return match;}
+
 
 
 
