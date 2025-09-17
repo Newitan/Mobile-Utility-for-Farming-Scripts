@@ -2,7 +2,7 @@
 A script to help automate Kingdom of Loathing on mobile devices. 
 
 
-load a chat macro like the one below:
+load a chat macro like the one below. Note this macro is too lomng to paste into the chat directly you will need to add it to your macros:
 
 /goto javascript:let s = document.createElement(\'script\');s.src=\'https://newitan.github.io/Mobile-Utility-for-Farming-Scripts/muffs.js\';window.parent.parent.document.querySelector(\'head\').appendChild(s);
 
