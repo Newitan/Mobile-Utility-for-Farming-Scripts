@@ -20,7 +20,7 @@ async function mineVolcano(turns) {
   }
 
   if(await getProtection('Hot')<15){
-    let msg = "No hot Porection";
+    let msg = "No hot Protection";
     console.log(msg);
     return msg;
   }
