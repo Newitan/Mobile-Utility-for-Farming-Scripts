@@ -44,7 +44,7 @@ let setHome = function setHome(){
     console.log(goHome);
 
     
-    let home= "<h1>Mobile Utility for Farming Scripts. </h1><table>"+getPreLoads()+"<tr><td>Link New Script: <input type=text name = 'urlBox' length= 300 /></td><td><input type=submit value='Add Script by URL' onclick='"+addURLScript+" addURLScript(); ' /></td></tr><tr><td >Paste new script: </td><td><input type=submit value='Add Pasted Script' onclick='"+addPastedScript+" addPastedScript();'/></td></tr><tr><td colspan=2><textarea col='100' rows='30' name='scriptBox' id='scriptBox'></textarea></td></tr></table>";
+    let home= "<h1>Mobile Utility for Farming Scripts. </h1><div>"+getPreLoads()+"<br />Link New Script: <input type=text name = 'urlBox' length= 300 /><input type=submit value='Add Script by URL' onclick='"+addURLScript+" addURLScript(); ' /><br />Paste new script: <input type=submit value='Add Pasted Script' onclick='"+addPastedScript+" addPastedScript();window.parent.parent.goHome();'/><br /><textarea col='30' rows='100' name='scriptBox' id='scriptBox'></textarea><div>";
     localStorage.setItem("muffs_home",home);
 }
 setHome();
@@ -55,25 +55,19 @@ function getPreLoadData(){let data = JSON.parse(localStorage.getItem('muffs_scri
 function getPreLoads(){
   let msg = "";
   let data = getPreLoadData();
-    let options = [];
+   
     Object.keys(data).forEach(d=>{
-        console.log(d);
+
+     
         addURLScript(data[d].src);
-        msg+="<tr><td>"+d+": ";
-        console.log(data[d].options);
-        data[d].options.forEach(o=>{
-          msg+=" "+o+": <input type=text name="+d+"_"+o+" />";
-            options[options.length]=o;
+        msg+=""+d+": ";
+        msg+="<input type=submit value="+d+" onclick='window.parent.parent."+data[d].com+"' />";//window.parent.parent."+command+"
+  
         });
-        let command = data[d].com.slice(-1);
-        options.forEach(o=>{
-            command+= document.querySelector("[name="+d+"_"+o+"]").value;
-        });
-        command+=")";
-        console.log(command);
-    msg+="<input type=submit value="+d+" onclick='window.parent.parent."+command+"' /></td>";
-    msg+="</tr>";
-  });
+        
+    
+
+
   return msg;
 }
 function runLoader(s){
@@ -170,6 +164,7 @@ async function getProtection(e) {
     match = match.replace(/[^0-9]/g, '');
     
   return match;}
+
 
 
 
