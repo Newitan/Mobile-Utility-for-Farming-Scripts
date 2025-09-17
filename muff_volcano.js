@@ -34,8 +34,11 @@ async function mineVolcano(turns) {
   const startTime = Date.now();
   const startGold = inv[8424];
   let newMine = false;
+
+  console.log("Ending on turn: "+endTurns);
   // Mining loop
   let mineLoop = async () => {
+    console.log(api.adventures);
     if(api.adventures<= endTurns || api.adventures<1){
        let finalTurns = startTurns - api.adventures;
       let finalGold = inv[8424] - startGold;
