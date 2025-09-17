@@ -27,7 +27,7 @@ let addURLScript = function addURLScript(url){
   window.parent.parent.parent.document.querySelector("head").appendChild(s);
 }
 //Value for home page
-function goHome(){
+let goHome = function goHome(){
 setHome();
 setFrame(" ");
 
@@ -37,7 +37,7 @@ setFrame(localStorage.getItem("muffs_home"));
 
 
 
-function setHome(){
+let setHome = function setHome(){
     //Functions included in the "" string have to use " " for their strings not '' 
     console.log(getPreLoads());
     console.log(addURLScript);
@@ -163,7 +163,6 @@ async function getProtection(e) {
     match = match.replace(/[^0-9]/g, '');
     
   return match;}
-
 
 
 
