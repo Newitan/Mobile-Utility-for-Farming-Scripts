@@ -37,11 +37,11 @@ setFrame(localStorage.getItem("muffs_home"));
 
 
 
-let setHome = function setHome(){
+function setHome(){
     //Functions included in the "" string have to use " " for their strings not '' 
-    console.log(getPreLoads());
-    console.log(addURLScript);
-    console.log(goHome);
+    //console.log(getPreLoads());
+    //console.log(addURLScript);
+    //console.log(goHome);
 
     
     let home= "<h1>Mobile Utility for Farming Scripts. </h1><div>"+getPreLoads()+"<br />Link New Script: <input type=text name = 'urlBox' length= 300 /><input type=submit value='Add Script by URL' onclick='"+addURLScript+" addURLScript(); ' /><br />Paste new script: <input type=submit value='Add Pasted Script' onclick='"+addPastedScript+" addPastedScript();window.parent.parent.goHome();'/><br /><textarea col='30' rows='100' name='scriptBox' id='scriptBox'></textarea><div>";
@@ -165,8 +165,6 @@ async function getProtection(e) {
     match = match.replace(/[^0-9]/g, '');
     
   return match;}
-
-
 
 
 
