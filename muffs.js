@@ -62,9 +62,13 @@ function getPreLoads(){
         msg+="<tr><td>"+d+": ";
         console.log(data[d].options);
         data[d].options.forEach(o=>{
-          msg+=" "+o+": <input type=text name="+o+" />";
+          msg+=" "+o+": <input type=text name="+d+"_"+o+" />";
         });
-    msg+="<input type=submit value="+d+" onclick='window.parent.parent."+data[d].com+"' /></td>";
+        let command = data[d].com.slice(-1);
+        command+= document.querySelector("[name="+d+"_"+o+"]").value;
+        command+=")";
+        console.log(command);
+    msg+="<input type=submit value="+d+" onclick='window.parent.parent."+command+"' /></td>";
     msg+="</tr>";
   });
   return msg;
@@ -163,6 +167,7 @@ async function getProtection(e) {
     match = match.replace(/[^0-9]/g, '');
     
   return match;}
+
 
 
 
