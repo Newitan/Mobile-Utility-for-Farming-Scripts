@@ -27,3 +27,6 @@ Bonus
 If you need to return to the home page for now I use /goto javascript:window.parent.goHome(); some users may need to use /goto javascript:window.parent.parent.goHome();
 
 
+If you are in an infinite loop, refresh the page to clear the scripts. 
+
+
