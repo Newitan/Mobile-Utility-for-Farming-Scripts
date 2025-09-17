@@ -1,7 +1,7 @@
 //https://newitan.github.io/Mobile-Utility-for-Farming-Scripts/muff_volcano.js
 // mineVolcano function
 
-window.parent.runLoader({name:'70svolcano',src:'https://newitan.github.io/Mobile-Utility-for-Farming-Scripts/muff_volcano.js',com:'mineVolcano',options:['turns']});
+window.parent.runLoader({name:'70svolcano',src:'https://newitan.github.io/Mobile-Utility-for-Farming-Scripts/muff_volcano.js',com:'mineVolcano()',options:['turns']});
 
 async function mineVolcano(turns) {
   await reapi();
