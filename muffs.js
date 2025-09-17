@@ -46,6 +46,7 @@ let setHome = function setHome(){
     
     let home= "<h1>Mobile Utility for Farming Scripts. </h1><div>"+getPreLoads()+"<br />Link New Script: <input type=text name = 'urlBox' length= 300 /><input type=submit value='Add Script by URL' onclick='"+addURLScript+" addURLScript(); ' /><br />Paste new script: <input type=submit value='Add Pasted Script' onclick='"+addPastedScript+" addPastedScript();window.parent.parent.goHome();'/><br /><textarea col='30' rows='100' name='scriptBox' id='scriptBox'></textarea><div>";
     localStorage.setItem("muffs_home",home);
+    setFrame(home);
 }
 setHome();
 //Preload from local storage
@@ -164,6 +165,7 @@ async function getProtection(e) {
     match = match.replace(/[^0-9]/g, '');
     
   return match;}
+
 
 
 
