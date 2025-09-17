@@ -36,7 +36,7 @@ async function mineVolcano(turns) {
   // Mining loop
   let mineLoop = async () => {
     let turnCheck = api.adventures - currentTurns;
-    if(turncheck!=0){turns-=turnCheck; currentTurns=api.adventures;}
+    if(turnCheck!=0){turns-=turnCheck; currentTurns=api.adventures;}
     if (turns <= 0) return;
   // Heal if HP low
   if (api.hp < 50) {
