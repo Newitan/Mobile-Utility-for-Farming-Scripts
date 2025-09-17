@@ -29,6 +29,7 @@ async function mineVolcano(turns) {
   if (parseInt(api.equipment.weapon) !== 8422) {
     await visit('inv_equip.php', 'which=2&action=equip&whichitem=8422', true);
   }
+  reapi();
   const startTurns = api.adventures;
   let endTurns = api.adventures-turns;
   const startTime = Date.now();
@@ -36,6 +37,7 @@ async function mineVolcano(turns) {
   let newMine = false;
 
   console.log("Ending on turn: "+endTurns);
+  console.log("adventures left: "+api.adventures);
   // Mining loop
   let mineLoop = async () => {
     console.log(api.adventures);
