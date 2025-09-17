@@ -24,10 +24,12 @@ let addURLScript = function addURLScript(url){
     box.value="";
   }
   s.src=url;
+
+
   window.parent.parent.parent.document.querySelector("head").appendChild(s);
 }
 //Value for home page
-let goHome = function goHome(){
+function goHome(){
 setHome();
 setFrame(" ");
 
@@ -38,13 +40,10 @@ setFrame(localStorage.getItem("muffs_home"));
 
 
 function setHome(){
-    //Functions included in the "" string have to use " " for their strings not '' 
-    //console.log(getPreLoads());
-    //console.log(addURLScript);
-    //console.log(goHome);
+
 
     
-    let home= "<h1>Mobile Utility for Farming Scripts. </h1><div>"+getPreLoads()+"<br />Link New Script: <input type=text name = 'urlBox' length= 300 /><input type=submit value='Add Script by URL' onclick='"+addURLScript+" addURLScript(); ' /><br />Paste new script: <input type=submit value='Add Pasted Script' onclick='"+addPastedScript+" addPastedScript();window.parent.parent.goHome();'/><br /><textarea col='30' rows='100' name='scriptBox' id='scriptBox'></textarea><div>";
+    let home= "<h1>Mobile Utility for Farming Scripts. </h1><div>"+getPreLoads()+"<br />Link New Script: <input type=text name = 'urlBox' length= 300 /><input type=submit value='Add Script by URL' onclick='"+addURLScript+" addURLScript(); ' /><br />Paste new script: <input type=submit value='Add Pasted Script' onclick='"+addPastedScript+" addPastedScript();window.parent.parent.sethome();'/><br /><textarea col='30' rows='100' name='scriptBox' id='scriptBox'></textarea><div>";
     localStorage.setItem("muffs_home",home);
     setFrame(home);
 }
@@ -77,7 +76,9 @@ if(s.name in data){console.log('already loaded');}else{
  
   data[s.name] = s;
   localStorage.setItem('muffs_scripts',JSON.stringify(data));
+  setHome();
 }
+
 }
 
 //Refreshing the API
