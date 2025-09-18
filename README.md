@@ -1,6 +1,6 @@
 # Mobile-Utility-for-Farming-Scripts
 A script to help automate Kingdom of Loathing on mobile devices. 
-
+```javascript
 Step 1:
 
 load a chat macro like the one below. Note this macro is too long to paste into the chat directly you will need to add it to your saved macros:
@@ -22,7 +22,6 @@ Step 2:
   https://newitan.github.io/Mobile-Utility-for-Farming-Scripts/muff_volcano.js
 
 
-
 Bonus 
 If you need to return to the home page for now I use /goto javascript:window.parent.goHome(); some users may need to use /goto javascript:window.parent.parent.goHome();
 
@@ -30,3 +29,4 @@ If you need to return to the home page for now I use /goto javascript:window.par
 If you are in an infinite loop, refresh the page to clear the scripts. 
 
 
+```
