@@ -2,11 +2,14 @@
     Introducing the Mobile Utility for Farming Scripts
 */
 let api = null, pwd = null, inv = null;
-let choices = null;
-const parser = new DOMParser();
 let debug = false;
 
-//Add scripts to the page
+/*
+The next two scripts add a script to the page. They are injected into the mainpane.
+Do not use any single quotes ' as they will break and I haven't found a good way to escape them. 
+
+
+*/
 let addPastedScript = function addPastedScript(){
   let box = document.querySelector("[name=scriptBox]");
   let s = document.createElement("script");
@@ -28,23 +31,17 @@ let addURLScript = function addURLScript(url){
 
   window.parent.parent.parent.document.querySelector("head").appendChild(s);
 }
-//Value for home page
+//depricated use Set Home 
 function goHome(){
 setHome();
-setFrame(" ");
-
-setFrame(localStorage.getItem("muffs_home"));
-
 }
 
 
 
 function setHome(){
-
-
-    
+    //Create a HTML string for the main pane adding options for adding or running scripts. 
     let home= "<h1>Mobile Utility for Farming Scripts. </h1><div>"+getPreLoads()+"<br />Link New Script: <input type=text name = 'urlBox' length= 300 /><input type=submit value='Add Script by URL' onclick='"+addURLScript+" addURLScript(); ' /><br />Paste new script: <input type=submit value='Add Pasted Script' onclick='"+addPastedScript+" addPastedScript();window.parent.parent.sethome();'/><br /><textarea col='30' rows='100' name='scriptBox' id='scriptBox'></textarea><div>";
-    localStorage.setItem("muffs_home",home);
+    localStorage.setItem("muffs_home",home); //Stores the page in local storage for easier access. 
     setFrame(home);
 }
 setHome();
@@ -70,7 +67,8 @@ function getPreLoads(){
 
   return msg;
 }
-function runLoader(s){
+
+function runLoader(s){// This function grabs the loader data from each script that has been added. These are stored in localStorage and reloaded automatically. 
    let data = getPreLoadData();
 if(s.name in data){console.log('already loaded');}else{
  
@@ -118,10 +116,11 @@ async function reapi() {
   }
 }
 
-//Set the mainframe content
+//Set the mainpane frame content.
 async function setFrame(t){
   parent.frames['mainpane'].document.body.innerHTML = t;
 }
+//Adds to the mainpane frame content. 
 async function updateFrame(t){
     console.log(t);
     let d = document.createElement('div');
@@ -156,6 +155,7 @@ async function visit(u, o, auth2) {
   }
 }
 
+//Work around for grabbing elemental resistance until the API is updated. 
 async function getProtection(e) {
     let page = await visit('charsheet.php');
    
@@ -166,6 +166,7 @@ async function getProtection(e) {
     match = match.replace(/[^0-9]/g, '');
     
   return match;}
+
 
 
 
