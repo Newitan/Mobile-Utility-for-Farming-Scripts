@@ -3,7 +3,8 @@
 */
 let api = null, pwd = null, inv = null;
 let debug = false;
-
+let choices = null;
+const parser = new DOMParser();
 /*
 The next two scripts add a script to the page. They are injected into the mainpane.
 Do not use any single quotes ' as they will break and I haven't found a good way to escape them. 
@@ -166,6 +167,7 @@ async function getProtection(e) {
     match = match.replace(/[^0-9]/g, '');
     
   return match;}
+
 
 
 
