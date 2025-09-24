@@ -263,5 +263,6 @@ class Item{
 async function load(){
   reapi();
   skills = await getSkills();
-  processItems(csv);
+  processItems();
+setHome();
 }
