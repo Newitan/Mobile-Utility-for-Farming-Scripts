@@ -5,8 +5,6 @@ let api = null, pwd = null, inv = null, skills= null;
 let choices = null;
 const parser = new DOMParser();
 let debug = false;
-let itemsData = 'https://newitan.github.io/Mobile-Utility-for-Farming-Scripts/items.txt';
-
 
 load();
 //Add scripts to the page
@@ -206,8 +204,12 @@ async function processItems(){
 /*
   This function takes the Item.txt csv file from kolMafia and converts it to an array of JSON objects. 
 */
-    const csv = await fetch(itemdata);
-  
+    const csv  = await fetch(new Request('https://newitan.github.io/Mobile-Utility-for-Farming-Scripts/items.txt', {
+      credentials: 'include',
+      method: 'POST',
+      body: new URLSearchParams('')
+    }));
+    if(csv.ok){
     const its = csv.split('\n');
     console.log(its);
     its.forEach(it =>{
@@ -218,6 +220,7 @@ async function processItems(){
         }
     });
     items.forEach(item =>{console.log(item);});
+  }
 }
 // Item class
 class Item{
