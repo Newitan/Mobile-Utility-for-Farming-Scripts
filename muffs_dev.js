@@ -203,13 +203,15 @@ let items = [];
 async function processItems(){
 /*
   This function takes the Item.txt csv file from kolMafia and converts it to an array of JSON objects. 
-*/
+*//*
     const csv  = addUrlScript('https://newitan.github.io/Mobile-Utility-for-Farming-Scripts/items.js');//
-    /*await fetch(new Request('https://newitan.github.io/Mobile-Utility-for-Farming-Scripts/items.txt', {
+    await fetch(new Request('https://newitan.github.io/Mobile-Utility-for-Farming-Scripts/items.txt', {
       credentials: 'include',
       method: 'POST',
       body: new URLSearchParams('')
     }));*/
+
+    /*
     if(csv.ok){
     const its = csv.split('\n');
     console.log(its);
@@ -222,6 +224,15 @@ async function processItems(){
     });
     items.forEach(item =>{console.log(item);});
   }
+  */
+    let si = document.createElement("script");
+
+  si.src='https://newitan.github.io/Mobile-Utility-for-Farming-Scripts/items.txt';
+    si.id='itemlist';
+    window.parent.parent.parent.document.querySelector("head").appendChild(si);
+    console.log(document.getElementById('itemlist'));
+
+  //window.parent.parent.parent.document.querySelector("head").appendChild(s);
 }
 // Item class
 class Item{
