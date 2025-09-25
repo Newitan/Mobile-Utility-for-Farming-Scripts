@@ -204,7 +204,7 @@ async function processItems(){
 /*
   This function takes the Item.txt csv file from kolMafia and converts it to an array of JSON objects. 
 */
-    const csv  = addScriptUrl('https://newitan.github.io/Mobile-Utility-for-Farming-Scripts/items.js');//
+    const csv  = addUrlScript('https://newitan.github.io/Mobile-Utility-for-Farming-Scripts/items.js');//
     /*await fetch(new Request('https://newitan.github.io/Mobile-Utility-for-Farming-Scripts/items.txt', {
       credentials: 'include',
       method: 'POST',
