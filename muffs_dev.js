@@ -227,10 +227,10 @@ async function processItems(){
   */
     let si = document.createElement("script");
 
-  si.src='https://newitan.github.io/Mobile-Utility-for-Farming-Scripts/items.txt';
-    si.id='itemlist';
+  si.src='https://newitan.github.io/Mobile-Utility-for-Farming-Scripts/items_dev.js';
+
     window.parent.parent.parent.document.querySelector("head").appendChild(si);
-    console.log(document.getElementById('itemlist'));
+    console.log(getItems());
 
   //window.parent.parent.parent.document.querySelector("head").appendChild(s);
 }
